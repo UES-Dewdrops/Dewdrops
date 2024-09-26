@@ -1,0 +1,33 @@
+{
+    "name": "MSUTemplate.Editor",
+    "rootNamespace": "MSUTemplate.Editor",
+    "references": [
+        "GUID:8e3847982664306429cef7df7c4c246d",
+        "GUID:08e20a9dcb84ac748840227dcac08af2",
+        "GUID:a44f47cf3ada4435dbc516bad0bc86fe",
+        "GUID:60983344ee8157d4ab97c25513f789c4"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "HGCSharpUtils.dll",
+        "HGUnityUtils.dll",
+        "RoR2.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "MSUTEMPLATE_GAME_IMPORTED"
+    ],
+    "versionDefines": [
+        {
+            "name": "riskofrain2",
+            "expression": "1.3.0",
+            "define": "MSUTEMPLATE_GAME_IMPORTED"
+        }
+    ],
+    "noEngineReferences": false
+}
