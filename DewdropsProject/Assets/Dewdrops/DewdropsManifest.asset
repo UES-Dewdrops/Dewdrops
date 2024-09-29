@@ -106,7 +106,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StagingPaths:
   - <MSUBuildPathAssets>
-  assetBundles: []
+  assetBundles:
+  - assetBundleName: dewdropscommon
+    assets:
+    - {fileID: 102900000, guid: afaf28fc568469c4886893681b6a395b, type: 3}
 --- !u!114 &114987763159783732
 MonoBehaviour:
   m_ObjectHideFlags: 0

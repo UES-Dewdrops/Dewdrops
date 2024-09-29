@@ -32,8 +32,13 @@ namespace Dewdrops
             assetCollection = request.asset;
 
             asset = assetCollection.sceneDef;
-            mainTrack = assetCollection.mainTrackDef;
-            bossTrack = assetCollection.bossTrackDef;
+            
+            if (assetCollection.mainTrackDef)
+                mainTrack = assetCollection.mainTrackDef.value;
+
+            if (assetCollection.bossTrackDef)
+                bossTrack = assetCollection.bossTrackDef.value;
+
             weightRelativeToSiblings = assetCollection.customWeightRelativeToSiblings;
             postLoop = assetCollection.appearsPostLoop;
             preLoop = assetCollection.appearsPreLoop;
