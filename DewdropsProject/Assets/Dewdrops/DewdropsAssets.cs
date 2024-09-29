@@ -291,19 +291,19 @@ namespace Dewdrops
         private static IEnumerator LoadFromPath(List<(string path, DewdropsBundle bundleEnum, AssetBundle loadedBundle)> list, string path, int index, int totalPaths)
         {
             string fileName = Path.GetFileName(path);
-            DewdropsBundle? DewdropsBundle = null;
+            DewdropsBundle? dewdropsBundle = null;
             //When you add new AssetBundles, you should add new Cases to this switch clause for your new bundles, for example, if you
             //where to add an "Artifacts" bundle, you'd write the following line (which is commented in this scenario.) this is all you
             //need to do to get new asset bundles loading.
             switch (fileName)
             {
-                case MAIN: DewdropsBundle = DewdropsBundle.Main; break;
-                case ITEMS: DewdropsBundle = DewdropsBundle.Items; break;
-                case EQUIPMENTS: DewdropsBundle = DewdropsBundle.Equipments; break;
+                case MAIN: dewdropsBundle = DewdropsBundle.Main; break;
+                case ITEMS: dewdropsBundle = DewdropsBundle.Items; break;
+                case EQUIPMENTS: dewdropsBundle = DewdropsBundle.Equipments; break;
                 //case ARTIFACTS: exampleBundle = ExampleBundle.Artifacts; break;
 
                 //This path does not match any of the non scene bundles, could be a scene, we will mark these on only this ocassion as "StreamedScene".
-                default: DewdropsBundle = DewdropsBundle.StreamedScene; break;
+                default: dewdropsBundle = DewdropsBundle.StreamedScene; break;
             }
 
             var request = AssetBundle.LoadFromFileAsync(path);
@@ -321,7 +321,7 @@ namespace Dewdrops
             }
 
             //The switch statement considered this a streamed scene bundle
-            if (DewdropsBundle == DewdropsBundle.StreamedScene)
+            if (dewdropsBundle == DewdropsBundle.StreamedScene)
             {
                 //supposed bundle is not streamed scene? throw exception.
                 if (!bundle.isStreamedSceneAssetBundle)
@@ -337,7 +337,7 @@ namespace Dewdrops
             }
 
             //The switch statement considered this to not be a streamed scene bundle, but an assets bundle.
-            list.Add((path, DewdropsBundle.Value, bundle));
+            list.Add((path, dewdropsBundle.Value, bundle));
             yield break;
         }
 

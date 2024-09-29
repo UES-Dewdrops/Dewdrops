@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Dewdrops
 {
-    [CreateAssetMenu(fileName = "ItemTierAssetCollection", menuName = "DewdropsAssetCollections/ItemTierAssetCollection")]
+    [CreateAssetMenu(fileName = "ItemTierAssetCollection", menuName = "Dewdrops/AssetCollections/ItemTierAssetCollection")]
     public class ItemTierAssetCollection : ExtendedAssetCollection
     {
         public SerializableColorCatalogEntry colorIndex;

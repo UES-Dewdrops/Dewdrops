@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Dewdrops
 {
-    [CreateAssetMenu(fileName = "SurvivorAssetCollection", menuName = "DewdropsAssetCollections/SurvivorAssetCollection")]
+    [CreateAssetMenu(fileName = "SurvivorAssetCollection", menuName = "Dewdrops/AssetCollections/SurvivorAssetCollection")]
     public class SurvivorAssetCollection : BodyAssetCollection
     {
         public SurvivorDef survivorDef;

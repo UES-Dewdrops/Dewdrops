@@ -2,7 +2,7 @@
 using UnityEngine;
 namespace Dewdrops
 {
-    [CreateAssetMenu(fileName = "BodyAssetCollection", menuName = "DewdropsAssetCollections/BodyAssetCollection")]
+    [CreateAssetMenu(fileName = "BodyAssetCollection", menuName = "Dewdrops/AssetCollections/BodyAssetCollection")]
     public class BodyAssetCollection : ExtendedAssetCollection
     {
         public GameObject bodyPrefab;

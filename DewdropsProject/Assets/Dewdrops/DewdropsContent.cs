@@ -125,6 +125,7 @@ namespace Dewdrops
         {
             ContentManager.collectContentPackProviders += AddSelf; //Make sure we add our pack provider to the game's system
             _parallelPreLoadDispatchers.Add(CallAsyncAssetLoadAttributes);
+            _parallelPreLoadDispatchers.Add(LanguageFileLoader.AddLanguageFilesFromModAsync, DewdropsMain.instance, "languages");
         }
 
         static DewdropsContent()

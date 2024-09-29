@@ -1,5 +1,22 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6727025124180303515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b243ff405b33b94dbf5b6775dd9aa33, type: 3}
+  m_Name: Files
+  m_EditorClassIdentifier: 
+  StagingPaths:
+  - <MSUBuildPathStreamingLanguage>
+  includeMetaFiles: 0
+  files:
+  - {fileID: 102900000, guid: 0f831dd98b7f5584b8949829a128de19, type: 3}
 --- !u!114 &-4467616490986340797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26,13 +43,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e563561e08b6a3642a487177f5cfbb37, type: 3}
-  m_Name: Dewdrops
+  m_Name: DewdropsManifest
   m_EditorClassIdentifier: 
   Data:
   - {fileID: 114211852988908172}
   - {fileID: 114107831304456238}
   - {fileID: 114431642618062350}
   - {fileID: 114987763159783732}
+  - {fileID: -6727025124180303515}
   - {fileID: 8324102109481770816}
   - {fileID: -4467616490986340797}
   identity: {fileID: 114211852988908172}
@@ -51,7 +69,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StagingPaths:
   - <MSUBuildPathPlugins>
-  definitions: []
+  definitions:
+  - {fileID: 5897886265953266890, guid: 8e3847982664306429cef7df7c4c246d, type: 3}
 --- !u!114 &114211852988908172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -66,7 +85,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StagingPaths:
   - <ManifestPluginStaging>
-  Author: YourName
+  Author: TeamDewdrops
   Name: Dewdrops
   Description: If i dont change the manifest identity's values i'm allowing my mod
     to be deprecated as soon as its found
@@ -101,7 +120,7 @@ MonoBehaviour:
   m_Name: Files
   m_EditorClassIdentifier: 
   StagingPaths:
-  - <MSUBuildPathSoundbanks>
+  - <MSUBuildPathStreamingSoundbank>
   includeMetaFiles: 0
   files: []
 --- !u!114 &8324102109481770816

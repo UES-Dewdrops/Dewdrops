@@ -38,7 +38,7 @@ namespace Dewdrops
         //MAKE SURE TO CHANGE THE NAME OF YOUR TEMPLATE, MSU WILL FLAT OUT IGNORE THIS GUID ON IT'S FRAMEWORKS.
         public const string GUID = "com.TeamName.Dewdrops";
         public const string VERSION = "0.0.1";
-        public const string NAME = "MSU Template";
+        public const string NAME = "Dewdrops";
 
         //Singleton access pattern to our instance.
         internal static DewdropsMain instance { get; private set; }
@@ -54,12 +54,8 @@ namespace Dewdrops
             new DewdropsConfig(this);
 
             //We do not load our assetbundles or content at awake, instead, we create a new instance of this class,
-            //which implements the game's IContentPackProvider interface.
+            //which implements the game's IContentPackProvider interface. Our content pack provider also loads language files.
             new DewdropsContent();
-
-            //To load our language files, we utilize this method, we pass our instance of BaseUnityPlugin so MSU can
-            //get direct access to our mod's location.
-            LanguageFileLoader.AddLanguageFilesFromMod(this, "DewdropsLang");
         }
     }
 }

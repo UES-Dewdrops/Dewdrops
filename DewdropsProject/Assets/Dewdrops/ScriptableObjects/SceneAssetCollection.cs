@@ -3,7 +3,7 @@ using RoR2;
 using UnityEngine;
 namespace Dewdrops
 {
-    [CreateAssetMenu(fileName = "SceneAssetCollection", menuName = "DewdropsAssetCollections/SceneAssetCollection")]
+    [CreateAssetMenu(fileName = "SceneAssetCollection", menuName = "Dewdrops/AssetCollections/SceneAssetCollection")]
     public class SceneAssetCollection : ExtendedAssetCollection
     {
         public SceneDef sceneDef;

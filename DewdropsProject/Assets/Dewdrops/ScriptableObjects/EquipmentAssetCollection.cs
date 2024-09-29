@@ -5,7 +5,7 @@ using MSU;
 
 namespace Dewdrops
 {
-    [CreateAssetMenu(fileName = "EquipmentAssetCollection", menuName = "DewdropsAssetCollections/EquipmentAssetCollection")]
+    [CreateAssetMenu(fileName = "EquipmentAssetCollection", menuName = "Dewdrops/AssetCollections/EquipmentAssetCollection")]
     public class EquipmentAssetCollection : ExtendedAssetCollection
     {
         public NullableRef<List<GameObject>> itemDisplayPrefabs;
