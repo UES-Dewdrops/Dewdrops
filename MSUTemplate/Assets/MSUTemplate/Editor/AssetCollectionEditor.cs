@@ -14,7 +14,7 @@ using Path = System.IO.Path;
 using UnityEngine.Networking;
 using System.Linq;
 
-namespace MSUTemplate.Editor
+namespace Dewdrops.Editor
 {
     [CustomEditor(typeof(ExtendedAssetCollection), true)]
     public class AssetCollectionEditor : UnityEditor.Editor

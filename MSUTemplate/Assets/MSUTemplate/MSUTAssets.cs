@@ -17,13 +17,13 @@ using UObject = UnityEngine.Object;
  * class manages loading assets from the multiple bundles setup instead of a singular bundle setup.
  */ 
 
-namespace MSUTemplate
+namespace Dewdrops
 {
     /// <summary>
     /// Outside of Invalid, StreamedScene and All, each entry in this enum represents a non StreamedScene asset bundle 
     /// from your mod.
     /// </summary>
-    public enum MSUTBundle
+    public enum DewdropsBundle
     {
         /// <summary>
         /// Represents an Invalid bundle, this is usually returned by the internal "FindAsset" type methods.
@@ -34,7 +34,7 @@ namespace MSUTemplate
         /// </summary>
         StreamedScene,
         /// <summary>
-        /// A special enum value, if supplied on <see cref="MSUTAssets.LoadAsset{TAsset}(string, MSUTBundle)"/> or <see cref="MSUTAssets.LoadAllAssets{TAsset}(MSUTBundle)"/>, it'll search all the loaded asset bundles and return the first match or a collection of matches. This also applies to their Async counterparts.
+        /// A special enum value, if supplied on <see cref="DewdropsAssets.LoadAsset{TAsset}(string, DewdropsBundle)"/> or <see cref="DewdropsAssets.LoadAllAssets{TAsset}(DewdropsBundle)"/>, it'll search all the loaded asset bundles and return the first match or a collection of matches. This also applies to their Async counterparts.
         /// </summary>
         All,
         /// <summary>
@@ -53,7 +53,7 @@ namespace MSUTemplate
     /// <summary>
     /// The mod's "Assets" class, which contains all the necesary assetbundle data for loading assets.
     /// </summary>
-    public static class MSUTAssets
+    public static class DewdropsAssets
     {
         /*
          * It is customary to have the asset bundle folder's name as a constant. So we can later enumerate the files in
@@ -65,23 +65,23 @@ namespace MSUTemplate
          * entry to these constants. The value of each constant is the Assetbundle name as specified in your mod's 
          * Manifest.
          */
-        private const string MAIN = "msutmain";
-        private const string ITEMS = "msutitems";
-        private const string EQUIPMENTS = "msutequipments";
+        private const string MAIN = "Dewdropsmain";
+        private const string ITEMS = "Dewdropsitems";
+        private const string EQUIPMENTS = "Dewdropsequipments";
 
         //Property for obtaining the Folder where all the asset bundles are located.
-        private static string assetBundleFolderPath => Path.Combine(Path.GetDirectoryName(MSUTMain.instance.Info.Location), ASSET_BUNDLE_FOLDER_NAME);
+        private static string assetBundleFolderPath => Path.Combine(Path.GetDirectoryName(DewdropsMain.instance.Info.Location), ASSET_BUNDLE_FOLDER_NAME);
 
         /*
          * The main system for managing multiple bundles at once, is simply assigning each non streamed scene bundle an
          * Enum value. Streamed Scene bundles are added to the array below, as these asset bundles cant be used for 
          * loading assets.
          */
-        private static Dictionary<MSUTBundle, AssetBundle> _assetBundles = new Dictionary<MSUTBundle, AssetBundle>();
+        private static Dictionary<DewdropsBundle, AssetBundle> _assetBundles = new Dictionary<DewdropsBundle, AssetBundle>();
         private static AssetBundle[] _streamedSceneBundles = Array.Empty<AssetBundle>();
 
         /// <summary>
-        /// Fired when all the AssetBundles from the mod are loaded into memory, this in turn gets fired during Content Pack Loading and as such should be used to implement new async loading calls to <see cref="MSUTContent._parallelPreLoadDispatchers"/>
+        /// Fired when all the AssetBundles from the mod are loaded into memory, this in turn gets fired during Content Pack Loading and as such should be used to implement new async loading calls to <see cref="DewdropsContent._parallelPreLoadDispatchers"/>
         /// </summary>
         public static ResourceAvailability assetsAvailability;
 
@@ -90,7 +90,7 @@ namespace MSUTemplate
         /// </summary>
         /// <param name="bundle">The bundle to obtain</param>
         /// <returns>The tied assetbundle, null if the enum value is All, Invalid or Streamed Scene</returns>
-        public static AssetBundle GetAssetBundle(MSUTBundle bundle)
+        public static AssetBundle GetAssetBundle(DewdropsBundle bundle)
         {
             if (IsEnumValueInvalidForGetAssetBundleOperation(bundle))
             {
@@ -101,37 +101,37 @@ namespace MSUTemplate
         }
 
         //Method to ensure the method "GetAssetBundle" doesnt try to access an invalid key.
-        private static bool IsEnumValueInvalidForGetAssetBundleOperation(MSUTBundle bundle)
+        private static bool IsEnumValueInvalidForGetAssetBundleOperation(DewdropsBundle bundle)
         {
-            return bundle == MSUTBundle.All || bundle == MSUTBundle.Invalid || bundle == MSUTBundle.StreamedScene;
+            return bundle == DewdropsBundle.All || bundle == DewdropsBundle.Invalid || bundle == DewdropsBundle.StreamedScene;
         }
 
         //Method to ensure the asset loading methods dont try to access an invalid assetbundle
-        private static bool IsEnumValueInvalidForAssetLoadingOperation(MSUTBundle bundle)
+        private static bool IsEnumValueInvalidForAssetLoadingOperation(DewdropsBundle bundle)
         {
-            return bundle == MSUTBundle.Invalid || bundle == MSUTBundle.StreamedScene;
+            return bundle == DewdropsBundle.Invalid || bundle == DewdropsBundle.StreamedScene;
         }
 
         /// <summary>
         /// Loads an asset of type <typeparamref name="TAsset"/> and name <paramref name="name"/> from the asset bundle specified by <paramref name="bundle"/>.
-        /// <para>See also <see cref="LoadAssetAsync{TAsset}(string, MSUTBundle)"/></para>
+        /// <para>See also <see cref="LoadAssetAsync{TAsset}(string, DewdropsBundle)"/></para>
         /// </summary>
         /// <typeparam name="TAsset">The type of asset</typeparam>
         /// <param name="name">The name of the Asset</param>
-        /// <param name="bundle">The bundle to load from. Accepts the value <see cref="MSUTBundle.All"/>, but it'll log a warning since using the value <see cref="MSUTBundle.All"/> creates unecesary calls.</param>
+        /// <param name="bundle">The bundle to load from. Accepts the value <see cref="DewdropsBundle.All"/>, but it'll log a warning since using the value <see cref="DewdropsBundle.All"/> creates unecesary calls.</param>
         /// <returns>The loaded asset if it exists, null otherwise.</returns>
-        public static TAsset LoadAsset<TAsset>(string name, MSUTBundle bundle) where TAsset : UObject
+        public static TAsset LoadAsset<TAsset>(string name, DewdropsBundle bundle) where TAsset : UObject
         {
             if (IsEnumValueInvalidForAssetLoadingOperation(bundle))
             {
 #if DEBUG
-                MSUTLog.Warning("Cannot load asset from bundle enum of value " + bundle);
+                DewdropsLog.Warning("Cannot load asset from bundle enum of value " + bundle);
 #endif
                 return null;
             }
 
             TAsset asset = null;
-            if (bundle == MSUTBundle.All)
+            if (bundle == DewdropsBundle.All)
             {
                 return FindAsset<TAsset>(name);
             }
@@ -141,55 +141,55 @@ namespace MSUTemplate
 #if DEBUG
             if (!asset)
             {
-                MSUTLog.Warning($"The method \"{GetCallingMethod()}\" is calling \"LoadAsset<TAsset>(string, MSUTBundle)\" with the arguments \"{typeof(TAsset).Name}\", \"{name}\" and \"{bundle}\", however, the asset could not be found.\n" +
+                DewdropsLog.Warning($"The method \"{GetCallingMethod()}\" is calling \"LoadAsset<TAsset>(string, DewdropsBundle)\" with the arguments \"{typeof(TAsset).Name}\", \"{name}\" and \"{bundle}\", however, the asset could not be found.\n" +
                     $"A complete search of all the bundles will be done and the correct bundle enum will be logged.");
 
-                return LoadAsset<TAsset>(name, MSUTBundle.All);
+                return LoadAsset<TAsset>(name, DewdropsBundle.All);
             }
 #endif
             return asset;
         }
 
         /// <summary>
-        /// Creates an instance of <see cref="MSUTAssetRequest{TAsset}"/> which will contain the necesary metadata for loading an Asset asynchronously.
-        /// <para>See also <see cref="LoadAsset{TAsset}(string, MSUTBundle)"/></para>
+        /// Creates an instance of <see cref="DewdropsAssetRequest{TAsset}"/> which will contain the necesary metadata for loading an Asset asynchronously.
+        /// <para>See also <see cref="LoadAsset{TAsset}(string, DewdropsBundle)"/></para>
         /// </summary>
         /// <typeparam name="TAsset">The type of asset to load</typeparam>
         /// <param name="name">The name of the asset to load</param>
-        /// <param name="bundle">The bundle to search thru, accepts the <see cref="MSUTBundle.All"/> value but it's not recommended as it creates unecesary calls.</param>
-        /// <returns>The <see cref="MSUTAssetRequest{TAsset}"/> to use for asynchronous loading.</returns>
-        public static MSUTAssetRequest<TAsset> LoadAssetAsync<TAsset>(string name, MSUTBundle bundle) where TAsset : UObject
+        /// <param name="bundle">The bundle to search thru, accepts the <see cref="DewdropsBundle.All"/> value but it's not recommended as it creates unecesary calls.</param>
+        /// <returns>The <see cref="DewdropsAssetRequest{TAsset}"/> to use for asynchronous loading.</returns>
+        public static DewdropsAssetRequest<TAsset> LoadAssetAsync<TAsset>(string name, DewdropsBundle bundle) where TAsset : UObject
         {
             if (IsEnumValueInvalidForAssetLoadingOperation(bundle))
             {
 #if DEBUG
-                MSUTLog.Warning("Cannot load asset asynchronously from bundle enum of value " + bundle);
+                DewdropsLog.Warning("Cannot load asset asynchronously from bundle enum of value " + bundle);
 #endif
                 return null;
             }
 
-            return new MSUTAssetRequest<TAsset>(name, bundle);
+            return new DewdropsAssetRequest<TAsset>(name, bundle);
         }
 
         /// <summary>
         /// Loads all assets of type <typeparamref name="TAsset"/> from the AssetBundle specified by <paramref name="bundle"/>
-        /// <para>See also <see cref="LoadAllAssetsAsync{TAsset}(MSUTBundle)"/></para>
+        /// <para>See also <see cref="LoadAllAssetsAsync{TAsset}(DewdropsBundle)"/></para>
         /// </summary>
         /// <typeparam name="TAsset">The type of asset to load</typeparam>
-        /// <param name="bundle">The AssetBundle to load from, accepts the <see cref="MSUTBundle.All"/> value</param>
+        /// <param name="bundle">The AssetBundle to load from, accepts the <see cref="DewdropsBundle.All"/> value</param>
         /// <returns>An array of <typeparamref name="TAsset"/> which contains all the loaded assets.</returns>
-        public static TAsset[] LoadAllAssets<TAsset>(MSUTBundle bundle) where TAsset : UObject
+        public static TAsset[] LoadAllAssets<TAsset>(DewdropsBundle bundle) where TAsset : UObject
         {
             if (IsEnumValueInvalidForAssetLoadingOperation(bundle))
             {
 #if DEBUG
-                MSUTLog.Warning("Cannot load assets from bundle enum of value " + bundle);
+                DewdropsLog.Warning("Cannot load assets from bundle enum of value " + bundle);
 #endif
                 return null;
             }
 
             TAsset[] loadedAssets = null;
-            if (bundle == MSUTBundle.All)
+            if (bundle == DewdropsBundle.All)
             {
                 return FindAssets<TAsset>();
             }
@@ -198,39 +198,39 @@ namespace MSUTemplate
 #if DEBUG
             if (loadedAssets.Length == 0)
             {
-                MSUTLog.Warning($"Could not find any asset of type {typeof(TAsset).Name} inside the bundle {bundle}");
+                DewdropsLog.Warning($"Could not find any asset of type {typeof(TAsset).Name} inside the bundle {bundle}");
             }
 #endif
             return loadedAssets;
         }
 
         /// <summary>
-        /// Creates an instance of <see cref="MSUTAssetRequest{TAsset}"/> which will contain the necesary metadata for loading an Asset asynchronously.
-        /// <para>See also <see cref="LoadAllAssets{TAsset}(MSUTBundle)"/></para>
+        /// Creates an instance of <see cref="DewdropsAssetRequest{TAsset}"/> which will contain the necesary metadata for loading an Asset asynchronously.
+        /// <para>See also <see cref="LoadAllAssets{TAsset}(DewdropsBundle)"/></para>
         /// </summary>
         /// <typeparam name="TAsset">The type of asset to load</typeparam>
-        /// <param name="bundle">The AssetBundle to load from, accepts the <see cref="MSUTBundle.All"/> value</param>
-        /// <returns>The <see cref="MSUTAssetRequest{TAsset}"/> to use for asynchronous loading.</returns>
-        public static MSUTAssetRequest<TAsset> LoadAllAssetsAsync<TAsset>(MSUTBundle bundle) where TAsset : UObject
+        /// <param name="bundle">The AssetBundle to load from, accepts the <see cref="DewdropsBundle.All"/> value</param>
+        /// <returns>The <see cref="DewdropsAssetRequest{TAsset}"/> to use for asynchronous loading.</returns>
+        public static DewdropsAssetRequest<TAsset> LoadAllAssetsAsync<TAsset>(DewdropsBundle bundle) where TAsset : UObject
         {
             if (IsEnumValueInvalidForAssetLoadingOperation(bundle))
             {
 #if DEBUG
-                MSUTLog.Warning("Cannot load asset from bundle enum of value " + bundle);
+                DewdropsLog.Warning("Cannot load asset from bundle enum of value " + bundle);
 #endif
                 return null;
             }
 
-            return new MSUTAssetRequest<TAsset>(bundle);
+            return new DewdropsAssetRequest<TAsset>(bundle);
         }
 
         /// <summary>
-        /// Initializes the mod's asset bundles asynchronously, should only be called once and during <see cref="MSUTContent.LoadStaticContentAsync(RoR2.ContentManagement.LoadStaticContentAsyncArgs)"/>
+        /// Initializes the mod's asset bundles asynchronously, should only be called once and during <see cref="DewdropsContent.LoadStaticContentAsync(RoR2.ContentManagement.LoadStaticContentAsyncArgs)"/>
         /// </summary>
         /// <returns>A coroutine which can be awaited.</returns>
         internal static IEnumerator Initialize()
         {
-            MSUTLog.Info($"Initializing Assets...");
+            DewdropsLog.Info($"Initializing Assets...");
             //We need to load the asset bundles first otherwise the rest of the mod wont work.
             var loadRoutine = LoadAssetBundles();
 
@@ -258,7 +258,7 @@ namespace MSUTemplate
             //Create a coroutine helper for parallel loading
             ParallelMultiStartCoroutine helper = new ParallelMultiStartCoroutine();
 
-            List<(string path, MSUTBundle bundleEnum, AssetBundle loadedBundle)> pathsAndBundles = new List<(string path, MSUTBundle bundleEnum, AssetBundle loadedBundle)>(); //Save the necesary metadata from the loading process so we can handle it later.
+            List<(string path, DewdropsBundle bundleEnum, AssetBundle loadedBundle)> pathsAndBundles = new List<(string path, DewdropsBundle bundleEnum, AssetBundle loadedBundle)>(); //Save the necesary metadata from the loading process so we can handle it later.
 
             string[] paths = GetAssetBundlePaths();
             for (int i = 0; i < paths.Length; i++)
@@ -272,9 +272,9 @@ namespace MSUTemplate
                 yield return null;
 
             //Parse the results
-            foreach ((string path, MSUTBundle bundleEnum, AssetBundle assetBundle) in pathsAndBundles)
+            foreach ((string path, DewdropsBundle bundleEnum, AssetBundle assetBundle) in pathsAndBundles)
             {
-                if (bundleEnum == MSUTBundle.StreamedScene)
+                if (bundleEnum == DewdropsBundle.StreamedScene)
                 {
                     //If the loading operation determined the bundle is a streamed scene, add it to the array
                     HG.ArrayUtils.ArrayAppend(ref _streamedSceneBundles, assetBundle);
@@ -288,22 +288,22 @@ namespace MSUTemplate
         }
 
         //This method is what actually loads the AssetBundle into memory, and assigns it a Bundle enum value if needed.
-        private static IEnumerator LoadFromPath(List<(string path, MSUTBundle bundleEnum, AssetBundle loadedBundle)> list, string path, int index, int totalPaths)
+        private static IEnumerator LoadFromPath(List<(string path, DewdropsBundle bundleEnum, AssetBundle loadedBundle)> list, string path, int index, int totalPaths)
         {
             string fileName = Path.GetFileName(path);
-            MSUTBundle? msutBundle = null;
+            DewdropsBundle? DewdropsBundle = null;
             //When you add new AssetBundles, you should add new Cases to this switch clause for your new bundles, for example, if you
             //where to add an "Artifacts" bundle, you'd write the following line (which is commented in this scenario.) this is all you
             //need to do to get new asset bundles loading.
             switch (fileName)
             {
-                case MAIN: msutBundle = MSUTBundle.Main; break;
-                case ITEMS: msutBundle = MSUTBundle.Items; break;
-                case EQUIPMENTS: msutBundle = MSUTBundle.Equipments; break;
+                case MAIN: DewdropsBundle = DewdropsBundle.Main; break;
+                case ITEMS: DewdropsBundle = DewdropsBundle.Items; break;
+                case EQUIPMENTS: DewdropsBundle = DewdropsBundle.Equipments; break;
                 //case ARTIFACTS: exampleBundle = ExampleBundle.Artifacts; break;
 
                 //This path does not match any of the non scene bundles, could be a scene, we will mark these on only this ocassion as "StreamedScene".
-                default: msutBundle = MSUTBundle.StreamedScene; break;
+                default: DewdropsBundle = DewdropsBundle.StreamedScene; break;
             }
 
             var request = AssetBundle.LoadFromFileAsync(path);
@@ -321,7 +321,7 @@ namespace MSUTemplate
             }
 
             //The switch statement considered this a streamed scene bundle
-            if (msutBundle == MSUTBundle.StreamedScene)
+            if (DewdropsBundle == DewdropsBundle.StreamedScene)
             {
                 //supposed bundle is not streamed scene? throw exception.
                 if (!bundle.isStreamedSceneAssetBundle)
@@ -331,13 +331,13 @@ namespace MSUTemplate
                 else
                 {
                     //bundle is streamed scene, add to the list and break.
-                    list.Add((path, MSUTBundle.StreamedScene, bundle));
+                    list.Add((path, DewdropsBundle.StreamedScene, bundle));
                     yield break;
                 }
             }
 
             //The switch statement considered this to not be a streamed scene bundle, but an assets bundle.
-            list.Add((path, msutBundle.Value, bundle));
+            list.Add((path, DewdropsBundle.Value, bundle));
             yield break;
         }
 
@@ -362,7 +362,7 @@ namespace MSUTemplate
         private static TAsset FindAsset<TAsset>(string name) where TAsset : UnityEngine.Object
         {
             TAsset loadedAsset = null;
-            MSUTBundle foundInBundle = MSUTBundle.Invalid;
+            DewdropsBundle foundInBundle = DewdropsBundle.Invalid;
             foreach ((var enumVal, var assetBundle) in _assetBundles)
             {
                 loadedAsset = assetBundle.LoadAsset<TAsset>(name);
@@ -376,9 +376,9 @@ namespace MSUTemplate
 
 #if DEBUG
             if (loadedAsset)
-                MSUTLog.Info($"Asset of type {typeof(TAsset).Name} with name {name} was found inside bundle {foundInBundle}, it is recommended that you load the asset directly.");
+                DewdropsLog.Info($"Asset of type {typeof(TAsset).Name} with name {name} was found inside bundle {foundInBundle}, it is recommended that you load the asset directly.");
             else
-                MSUTLog.Warning($"Could not find asset of type {typeof(TAsset).Name} with name {name} in any of the bundles.");
+                DewdropsLog.Warning($"Could not find asset of type {typeof(TAsset).Name} with name {name} in any of the bundles.");
 #endif
 
             return loadedAsset;
@@ -395,7 +395,7 @@ namespace MSUTemplate
 
 #if DEBUG
             if (assets.Count == 0)
-                MSUTLog.Warning($"Could not find any asset of type {typeof(TAsset).Name} in any of the bundles");
+                DewdropsLog.Warning($"Could not find any asset of type {typeof(TAsset).Name} in any of the bundles");
 #endif
 
             return assets.ToArray();
@@ -415,10 +415,10 @@ namespace MSUTemplate
                     continue;
 
                 var declaringType = method.DeclaringType;
-                if (declaringType.IsGenericType && declaringType.DeclaringType == typeof(MSUTAssets))
+                if (declaringType.IsGenericType && declaringType.DeclaringType == typeof(DewdropsAssets))
                     continue;
 
-                if (declaringType == typeof(MSUTAssets))
+                if (declaringType == typeof(DewdropsAssets))
                     continue;
 
                 var fileName = frame.GetFileName();
@@ -448,9 +448,9 @@ namespace MSUTemplate
 
     /// <summary>
     /// A class that represents a request for loading Assets asynchronously.
-    /// <br>You're strongly advised to use and check out <see cref="MSUTAssetRequest{TAsset}"/> instead.</br>
+    /// <br>You're strongly advised to use and check out <see cref="DewdropsAssetRequest{TAsset}"/> instead.</br>
     /// </summary>
-    public abstract class MSUTAssetRequest : IEnumerator
+    public abstract class DewdropsAssetRequest : IEnumerator
     {
         /// <summary>
         /// The loaded asset, boxed as a Unity Object.
@@ -464,8 +464,8 @@ namespace MSUTemplate
         /// <summary>
         /// The AssetBundle to load from.
         /// </summary>
-        public MSUTBundle targetBundle => _targetBundle;
-        private MSUTBundle _targetBundle;
+        public DewdropsBundle targetBundle => _targetBundle;
+        private DewdropsBundle _targetBundle;
 
         /// <summary>
         /// The name of the asset to load. Can be null in the scenario this request loads multiple assets.
@@ -553,11 +553,11 @@ namespace MSUTemplate
         }
 
         /// <summary>
-        /// Constructor for an MSUTAssetRequest that'll load a single asset
+        /// Constructor for an DewdropsAssetRequest that'll load a single asset
         /// </summary>
         /// <param name="assetName">The name of the asset</param>
-        /// <param name="bundleEnum">The AssetBundle to load from, accepts the value <see cref="MSUTBundle.All"/>, but it shouldn't be used as it generates unecesary overhead</param>
-        public MSUTAssetRequest(string assetName, MSUTBundle bundleEnum)
+        /// <param name="bundleEnum">The AssetBundle to load from, accepts the value <see cref="DewdropsBundle.All"/>, but it shouldn't be used as it generates unecesary overhead</param>
+        public DewdropsAssetRequest(string assetName, DewdropsBundle bundleEnum)
         {
             _assetName = assetName;
             _targetBundle = bundleEnum;
@@ -566,10 +566,10 @@ namespace MSUTemplate
         }
 
         /// <summary>
-        /// Constructor for an MSUTAssetRequest that'll load multiple assets
+        /// Constructor for an DewdropsAssetRequest that'll load multiple assets
         /// </summary>
-        /// <param name="bundleEnum">The AssetBundle to load from, accepts the value <see cref="MSUTBundle.All"/></param>
-        public MSUTAssetRequest(MSUTBundle bundleEnum)
+        /// <param name="bundleEnum">The AssetBundle to load from, accepts the value <see cref="DewdropsBundle.All"/></param>
+        public DewdropsAssetRequest(DewdropsBundle bundleEnum)
         {
             _assetName = string.Empty;
             _targetBundle = bundleEnum;
@@ -582,7 +582,7 @@ namespace MSUTemplate
     /// A class that represents a request for loading assets of type <typeparamref name="TAsset"/> asynchronously
     /// </summary>
     /// <typeparam name="TAsset">The type of asset to load</typeparam>
-    public class MSUTAssetRequest<TAsset> : MSUTAssetRequest where TAsset : UObject
+    public class DewdropsAssetRequest<TAsset> : DewdropsAssetRequest where TAsset : UObject
     {
         public override UObject boxedAsset => _asset;
         public TAsset asset => _asset;
@@ -596,7 +596,7 @@ namespace MSUTemplate
         {
             AssetBundleRequest request = null;
 
-            request = MSUTAssets.GetAssetBundle(targetBundle).LoadAssetAsync<TAsset>(assetName); ;
+            request = DewdropsAssets.GetAssetBundle(targetBundle).LoadAssetAsync<TAsset>(assetName); ;
             while (!request.isDone)
                 yield return null;
 
@@ -607,16 +607,16 @@ namespace MSUTemplate
             if (_asset)
                 yield break;
 
-            MSUTLog.Warning($"The method \"{GetCallingMethod()}\" is calling a MSUTAssetRequest.StartLoad() while the class has the values \"{assetTypeName}\", \"{assetName}\" and \"{targetBundle}\", however, the asset could not be found.\n" +
+            DewdropsLog.Warning($"The method \"{GetCallingMethod()}\" is calling a DewdropsAssetRequest.StartLoad() while the class has the values \"{assetTypeName}\", \"{assetName}\" and \"{targetBundle}\", however, the asset could not be found.\n" +
     $"A complete search of all the bundles will be done and the correct bundle enum will be logged.");
 
-            MSUTBundle foundInBundle = MSUTBundle.Invalid;
-            foreach (MSUTBundle bundleEnum in Enum.GetValues(typeof(MSUTBundle)))
+            DewdropsBundle foundInBundle = DewdropsBundle.Invalid;
+            foreach (DewdropsBundle bundleEnum in Enum.GetValues(typeof(DewdropsBundle)))
             {
-                if (bundleEnum == MSUTBundle.All || bundleEnum == MSUTBundle.Invalid || bundleEnum == MSUTBundle.StreamedScene)
+                if (bundleEnum == DewdropsBundle.All || bundleEnum == DewdropsBundle.Invalid || bundleEnum == DewdropsBundle.StreamedScene)
                     continue;
 
-                request = MSUTAssets.GetAssetBundle(bundleEnum).LoadAssetAsync<TAsset>(assetName);
+                request = DewdropsAssets.GetAssetBundle(bundleEnum).LoadAssetAsync<TAsset>(assetName);
                 while (!request.isDone)
                 {
                     yield return null;
@@ -632,11 +632,11 @@ namespace MSUTemplate
 
             if (_asset)
             {
-                MSUTLog.Info($"Asset of type {assetTypeName} and name {assetName} was found inside bundle {foundInBundle}. It is recommended to load the asset directly.");
+                DewdropsLog.Info($"Asset of type {assetTypeName} and name {assetName} was found inside bundle {foundInBundle}. It is recommended to load the asset directly.");
             }
             else
             {
-                MSUTLog.Fatal($"Could not find asset of type {assetTypeName} and name {assetName} In any of the bundles, exceptions may occur.");
+                DewdropsLog.Fatal($"Could not find asset of type {assetTypeName} and name {assetName} In any of the bundles, exceptions may occur.");
             }
 #endif
             yield break;
@@ -647,14 +647,14 @@ namespace MSUTemplate
             _assets.Clear();
 
             AssetBundleRequest request = null;
-            if (targetBundle == MSUTBundle.All)
+            if (targetBundle == DewdropsBundle.All)
             {
-                foreach (MSUTBundle enumVal in Enum.GetValues(typeof(MSUTBundle)))
+                foreach (DewdropsBundle enumVal in Enum.GetValues(typeof(DewdropsBundle)))
                 {
-                    if (enumVal == MSUTBundle.All || enumVal == MSUTBundle.Invalid || enumVal == MSUTBundle.StreamedScene)
+                    if (enumVal == DewdropsBundle.All || enumVal == DewdropsBundle.Invalid || enumVal == DewdropsBundle.StreamedScene)
                         continue;
 
-                    request = MSUTAssets.GetAssetBundle(targetBundle).LoadAllAssetsAsync<TAsset>();
+                    request = DewdropsAssets.GetAssetBundle(targetBundle).LoadAllAssetsAsync<TAsset>();
                     while (!request.isDone)
                         yield return null;
 
@@ -664,13 +664,13 @@ namespace MSUTemplate
 #if DEBUG
                 if (_assets.Count == 0)
                 {
-                    MSUTLog.Warning($"Could not find any asset of type {assetTypeName} in any of the bundles");
+                    DewdropsLog.Warning($"Could not find any asset of type {assetTypeName} in any of the bundles");
                 }
 #endif
                 yield break;
             }
 
-            request = MSUTAssets.GetAssetBundle(targetBundle).LoadAllAssetsAsync<TAsset>();
+            request = DewdropsAssets.GetAssetBundle(targetBundle).LoadAllAssetsAsync<TAsset>();
             while (!request.isDone) yield return null;
 
             _assets.AddRange(request.allAssets.OfType<TAsset>());
@@ -678,7 +678,7 @@ namespace MSUTemplate
 #if DEBUG
             if (_assets.Count == 0)
             {
-                MSUTLog.Warning($"Could not find any asset of type {assetTypeName} inside the bundle {targetBundle}");
+                DewdropsLog.Warning($"Could not find any asset of type {assetTypeName} inside the bundle {targetBundle}");
             }
 #endif
 
@@ -698,10 +698,10 @@ namespace MSUTemplate
                     continue;
 
                 var declaringType = method.DeclaringType;
-                if (declaringType.IsGenericType && declaringType.DeclaringType == typeof(MSUTAssets))
+                if (declaringType.IsGenericType && declaringType.DeclaringType == typeof(DewdropsAssets))
                     continue;
 
-                if (declaringType == typeof(MSUTAssets))
+                if (declaringType == typeof(DewdropsAssets))
                     continue;
 
                 var fileName = frame.GetFileName();
@@ -728,12 +728,12 @@ namespace MSUTemplate
         }
 #endif
 
-        internal MSUTAssetRequest(string name, MSUTBundle bundle) : base(name, bundle)
+        internal DewdropsAssetRequest(string name, DewdropsBundle bundle) : base(name, bundle)
         {
             assetTypeName = typeof(TAsset).Name;
         }
 
-        internal MSUTAssetRequest(MSUTBundle bundle) : base(bundle)
+        internal DewdropsAssetRequest(DewdropsBundle bundle) : base(bundle)
         {
             _assets = new List<TAsset>();
             assetTypeName = typeof(TAsset).Name;

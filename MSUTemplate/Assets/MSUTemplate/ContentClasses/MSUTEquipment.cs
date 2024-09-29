@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 using UnityEngine;
 using RoR2.ContentManagement;
 
-namespace MSUTemplate
+namespace Dewdrops
 {
     /// <summary>
     /// <inheritdoc cref="IEquipmentContentPiece"/>
     /// </summary>
-    public abstract class MSUTEquipment : IEquipmentContentPiece, IContentPackModifier
+    public abstract class DewdropsEquipment : IEquipmentContentPiece, IContentPackModifier
     {
         /// <summary>
         /// The EquipmentAssetCollection for this Artifact. Populated when the Artifact gets it's assets loaded, can be null.
@@ -37,13 +37,13 @@ namespace MSUTemplate
         /// <summary>
         /// Method for loading an AssetRequest for this class. This will later get loaded Asynchronously.
         /// </summary>
-        /// <returns>An MSUTAssetRequest</returns>
-        public abstract MSUTAssetRequest LoadAssetRequest();
+        /// <returns>An DewdropsAssetRequest</returns>
+        public abstract DewdropsAssetRequest LoadAssetRequest();
         public abstract void Initialize();
         public abstract bool IsAvailable(ContentPack contentPack);
         public virtual IEnumerator LoadContentAsync()
         {
-            MSUTAssetRequest request = LoadAssetRequest();
+            DewdropsAssetRequest request = LoadAssetRequest();
 
             request.StartLoad();
             while (!request.isComplete)
@@ -62,7 +62,7 @@ namespace MSUTemplate
             }
             else
             {
-                MSUTLog.Error("Invalid AssetRequest " + request.assetName + " of type " + request.boxedAsset.GetType());
+                DewdropsLog.Error("Invalid AssetRequest " + request.assetName + " of type " + request.boxedAsset.GetType());
             }
         }
 

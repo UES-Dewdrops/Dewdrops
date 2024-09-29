@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 using UnityEngine;
 using RoR2.ContentManagement;
 
-namespace MSUTemplate
+namespace Dewdrops
 {
     /// <summary>
     /// <inheritdoc cref="IMonsterContentPiece"/>
     /// </summary>
-    public abstract class MSUTMonster : IMonsterContentPiece, IContentPackModifier
+    public abstract class DewdropsMonster : IMonsterContentPiece, IContentPackModifier
     {
         public NullableRef<MonsterCardProvider> cardProvider { get; protected set; }
         public NullableRef<DirectorCardHolderExtended> dissonanceCard { get; protected set; }
@@ -28,13 +28,13 @@ namespace MSUTemplate
         NullableRef<MonsterCardProvider> IMonsterContentPiece.cardProvider => cardProvider;
         GameObject IContentPiece<GameObject>.asset => characterPrefab;
 
-        public abstract MSUTAssetRequest<MonsterAssetCollection> LoadAssetRequest();
+        public abstract DewdropsAssetRequest<MonsterAssetCollection> LoadAssetRequest();
         public abstract void Initialize();
         public abstract bool IsAvailable(ContentPack contentPack);
 
         public virtual IEnumerator LoadContentAsync()
         {
-            MSUTAssetRequest<MonsterAssetCollection> request = LoadAssetRequest();
+            DewdropsAssetRequest<MonsterAssetCollection> request = LoadAssetRequest();
 
             request.StartLoad();
             while (!request.isComplete)

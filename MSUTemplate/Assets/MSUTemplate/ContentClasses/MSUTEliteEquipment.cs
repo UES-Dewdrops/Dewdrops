@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 using UnityEngine;
 using RoR2.ContentManagement;
 
-namespace MSUTemplate
+namespace Dewdrops
 {
     /// <summary>
     /// <inheritdoc cref="IEliteContentPiece"/>
     /// </summary>
-    public abstract class MSUTEliteEquipment : IEliteContentPiece, IContentPackModifier
+    public abstract class DewdropsEliteEquipment : IEliteContentPiece, IContentPackModifier
     {
         /// <summary>
         /// <inheritdoc cref="IEliteContentPiece.EliteDefs"/>
@@ -35,13 +35,13 @@ namespace MSUTemplate
         /// <summary>
         /// Method for loading an AssetRequest for this class. This will later get loaded Asynchronously.
         /// </summary>
-        /// <returns>An MSUTAssetRequest that loads an EliteAssetCollection</returns>
-        public abstract MSUTAssetRequest<EliteAssetCollection> LoadAssetRequest();
+        /// <returns>An DewdropsAssetRequest that loads an EliteAssetCollection</returns>
+        public abstract DewdropsAssetRequest<EliteAssetCollection> LoadAssetRequest();
         public abstract void Initialize();
         public abstract bool IsAvailable(ContentPack contentPack);
         public virtual IEnumerator LoadContentAsync()
         {
-            MSUTAssetRequest<EliteAssetCollection> request = LoadAssetRequest();
+            DewdropsAssetRequest<EliteAssetCollection> request = LoadAssetRequest();
 
             request.StartLoad();
             while (!request.isComplete)

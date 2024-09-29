@@ -59,43 +59,43 @@ sysinfo.txt
 crashlytics-build.properties
 
 #RoR2
-MSUTemplate/[Pp]ackages/[Rr]isk of Rain 2/*.dll
-MSUTemplate/[Pp]ackages/[Rr]isk of Rain 2/[Pp]lugins/*.dll
+Dewdrops/[Pp]ackages/[Rr]isk of Rain 2/*.dll
+Dewdrops/[Pp]ackages/[Rr]isk of Rain 2/[Pp]lugins/*.dll
 
 #Thunderkit Related
-MSUTemplate/Assets/ThunderKitSettings/EditorInspectorSettings.asset
-MSUTemplate/Assets/ThunderKitSettings/RoR2.asset
-MSUTemplate/Assets/ThunderKitSettings/Logs/*
-MSUTemplate/Assets/ThunderKitSettings/ThunderKit Extensions.asset
-MSUTemplate/ThunderKit/
+Dewdrops/Assets/ThunderKitSettings/EditorInspectorSettings.asset
+Dewdrops/Assets/ThunderKitSettings/RoR2.asset
+Dewdrops/Assets/ThunderKitSettings/Logs/*
+Dewdrops/Assets/ThunderKitSettings/ThunderKit Extensions.asset
+Dewdrops/ThunderKit/
 
 #Other
-MSUTemplate/Assets/Plugins/NGTools/*
-MSUTemplate/Assets/Resources/*
-MSUTemplate/Packages/*
-!MSUTemplate/Packages/packages-lock.json
-!MSUTemplate/Packages/manifest.json
+Dewdrops/Assets/Plugins/NGTools/*
+Dewdrops/Assets/Resources/*
+Dewdrops/Packages/*
+!Dewdrops/Packages/packages-lock.json
+!Dewdrops/Packages/manifest.json
 
 ##-------##
 ## wwise ##
 ##-------##
 
-MSUTemplate/MSUTemplate_WwiseProject/.cache/
-MSUTemplate/MSUTemplate_WwiseProject/*.prof
-MSUTemplate/MSUTemplate_WwiseProject/*_WwiseProject.*.validationcache
-MSUTemplate/MSUTemplate_WwiseProject/*_WwiseProject.*.wsettings
-MSUTemplate/MSUTemplate_WwiseProject/**/*.akd
+Dewdrops/Dewdrops_WwiseProject/.cache/
+Dewdrops/Dewdrops_WwiseProject/*.prof
+Dewdrops/Dewdrops_WwiseProject/*_WwiseProject.*.validationcache
+Dewdrops/Dewdrops_WwiseProject/*_WwiseProject.*.wsettings
+Dewdrops/Dewdrops_WwiseProject/**/*.akd
 
-MSUTemplate/Assets/Wwise/Editor/ProjectData/AkWwiseProjectData.asset*
+Dewdrops/Assets/Wwise/Editor/ProjectData/AkWwiseProjectData.asset*
 
 # notes:
 # 1) if any other files go in Assets/Wwise/Editor/ProjectData/ besides AkWwiseProjectData.asset*,
 #    then don't ignore Assets/Wwise/Editor/ProjectData.meta. If AkWwiseProjectData.asset is the only item in there,
 #    then, it's OK to ignore this file.
 # 
-MSUTemplate/Assets/Wwise/Editor/ProjectData.meta
-MSUTemplate/Assets/Wwise/Deployment/Plugins/Mac/*
+Dewdrops/Assets/Wwise/Editor/ProjectData.meta
+Dewdrops/Assets/Wwise/Deployment/Plugins/Mac/*
 
 #Integration zips
-MSUTemplate/WwiseUnityIntegration_Windows_Src.zip
-MSUTemplate/WwiseUnityIntegration_Mac_Src.zip
+Dewdrops/WwiseUnityIntegration_Windows_Src.zip
+Dewdrops/WwiseUnityIntegration_Mac_Src.zip

@@ -5,14 +5,14 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace MSUTemplate
+namespace Dewdrops
 {
-    public abstract class MSUTVanillaSurvivor : IVanillaSurvivorContentPiece, IContentPackModifier
+    public abstract class DewdropsVanillaSurvivor : IVanillaSurvivorContentPiece, IContentPackModifier
     {
         public VanillaSurvivorAssetCollection assetCollection { get; private set; }
         public SurvivorDef survivorDef { get; protected set; }
 
-        public abstract MSUTAssetRequest<VanillaSurvivorAssetCollection> LoadAssetRequest();
+        public abstract DewdropsAssetRequest<VanillaSurvivorAssetCollection> LoadAssetRequest();
         public abstract void Initialize();
         public IEnumerator InitializeAsync()
         {

@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using UObject = UnityEngine.Object;
 
-namespace MSUTemplate
+namespace Dewdrops
 {
     /// <summary>
     /// Base class for all the AssetCollections for the mod

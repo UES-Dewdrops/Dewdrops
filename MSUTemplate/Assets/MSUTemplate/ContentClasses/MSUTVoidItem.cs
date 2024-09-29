@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 using UnityEngine;
 using RoR2.ContentManagement;
 
-namespace MSUTemplate
+namespace Dewdrops
 {
     /// <summary>
     /// <inheritdoc cref="IVoidItemContentPiece"/>
     /// </summary>
-    public abstract class MSUTVoidItem : IVoidItemContentPiece, IContentPackModifier
+    public abstract class DewdropsVoidItem : IVoidItemContentPiece, IContentPackModifier
     {
         public ItemAssetCollection assetCollection { get; private set; }
         public NullableRef<List<GameObject>> itemDisplayPrefabs { get; protected set; } = new List<GameObject>();
@@ -24,12 +24,12 @@ namespace MSUTemplate
         NullableRef<List<GameObject>> IItemContentPiece.itemDisplayPrefabs => itemDisplayPrefabs;
 
 
-        public abstract MSUTAssetRequest LoadAssetRequest();
+        public abstract DewdropsAssetRequest LoadAssetRequest();
         public abstract void Initialize();
         public abstract bool IsAvailable(ContentPack contentPack);
         public virtual IEnumerator LoadContentAsync()
         {
-            MSUTAssetRequest request = LoadAssetRequest();
+            DewdropsAssetRequest request = LoadAssetRequest();
 
             request.StartLoad();
             while (!request.isComplete)
@@ -48,7 +48,7 @@ namespace MSUTemplate
             }
             else
             {
-                MSUTLog.Error("Invalid AssetRequest " + request.assetName + " of type " + request.boxedAsset.GetType());
+                DewdropsLog.Error("Invalid AssetRequest " + request.assetName + " of type " + request.boxedAsset.GetType());
             }
         }
 

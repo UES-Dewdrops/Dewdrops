@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using UDebug = UnityEngine.Debug;
 
-namespace MSUTemplate
+namespace Dewdrops
 {
     //This class is used for logging data related to our mod, we should ideally utilize this class instead of
     //UnityEngine.Debug as it has a couple of extra features not present in the regular UnityEngine.Debug class.
-    internal class MSUTLog
+    internal class DewdropsLog
     {
         //This becomes our mod's Logger, this is assigned during the constructor for this class.
         private static ManualLogSource logger = null;
@@ -90,7 +90,7 @@ namespace MSUTemplate
         public static string Format(object data, int i, string member)
         {
 #if UNITY_EDITOR
-            return $"['{nameof(MSUTLog)}')]: {data} | Line={i} : Member={member}";
+            return $"['{nameof(DewdropsLog)}')]: {data} | Line={i} : Member={member}";
 #else
             return $"{data} | Line={i} : Member={member}";
 #endif
@@ -108,7 +108,7 @@ namespace MSUTemplate
 #endif
 
         //Constructor which is used to set the logger.
-        internal MSUTLog(ManualLogSource logger_)
+        internal DewdropsLog(ManualLogSource logger_)
         {
             logger = logger_;
         }

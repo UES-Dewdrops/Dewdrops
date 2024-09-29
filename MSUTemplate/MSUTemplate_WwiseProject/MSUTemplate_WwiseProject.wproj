@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="Project" SchemaVersion="119" WwiseVersion="v2023.1.4" WwiseBuild="8496">
 	<ProjectInfo>
-		<Project Name="MSUTemplate_WwiseProject" ID="{C82FAFDB-CE5A-4590-BB6B-FC2A5F00C9E1}">
+		<Project Name="Dewdrops_WwiseProject" ID="{C82FAFDB-CE5A-4590-BB6B-FC2A5F00C9E1}">
 			<Platforms>
 				<Platform Name="Mac" ReferencePlatform="Mac" ID="{55283205-FBD8-4ACF-8E89-13CB360B7D9E}" />
 				<Platform Name="Windows" ReferencePlatform="Windows" ID="{E668AD10-6B29-476E-A7F5-553B93A27B36}" />
@@ -25,7 +25,7 @@
 						<Value Platform="Mac">GeneratedSoundBanks\Mac\</Value>
 					</ValueList>
 				</Property>
-				<Property Name="SoundBankGenerateEstimatedDuration" Type="bool" Value="True" /><Property Name="SoundBankGenerateHeaderFile" Type="bool" Value="True" /><Property Name="SoundBankGenerateMaxAttenuationInfo" Type="bool" Value="True" /><Property Name="SoundBankHeaderFilePath" Type="string" Value="../../MSUTemplate/Assets/StreamingAssets/Audio/GeneratedSoundBanks" />
+				<Property Name="SoundBankGenerateEstimatedDuration" Type="bool" Value="True" /><Property Name="SoundBankGenerateHeaderFile" Type="bool" Value="True" /><Property Name="SoundBankGenerateMaxAttenuationInfo" Type="bool" Value="True" /><Property Name="SoundBankHeaderFilePath" Type="string" Value="../../Dewdrops/Assets/StreamingAssets/Audio/GeneratedSoundBanks" />
 				<Property Name="SoundBankPaths" Type="string">
 					<ValueList>
 						<Value Platform="Windows">GeneratedSoundBanks\Windows\</Value>

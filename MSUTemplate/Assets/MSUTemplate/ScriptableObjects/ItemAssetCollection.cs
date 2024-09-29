@@ -3,9 +3,9 @@ using UnityEngine;
 using System.Collections.Generic;
 using MSU;
 
-namespace MSUTemplate
+namespace Dewdrops
 {
-    [CreateAssetMenu(fileName = "ItemAssetCollection", menuName = "MSUTemplateAssetCollections/ItemAssetCollection")]
+    [CreateAssetMenu(fileName = "ItemAssetCollection", menuName = "DewdropsAssetCollections/ItemAssetCollection")]
     public class ItemAssetCollection : ExtendedAssetCollection
     {
         public NullableRef<List<GameObject>> itemDisplayPrefabs;

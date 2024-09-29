@@ -5,12 +5,12 @@ using RoR2.Artifacts;
 using R2API.ScriptableObjects;
 using MSU;
 
-namespace MSUTemplate
+namespace Dewdrops
 {
     /// <summary>
-    /// Represents an <see cref="ExtendedAssetCollection"/> that contains the assets for a <see cref="MSUTArtifact"/>
+    /// Represents an <see cref="ExtendedAssetCollection"/> that contains the assets for a <see cref="DewdropsArtifact"/>
     /// </summary>
-    [CreateAssetMenu(fileName = "ArtifactAssetCollection", menuName = "MSUTemplate/AssetCollections/ArtifactAssetCollection")]
+    [CreateAssetMenu(fileName = "ArtifactAssetCollection", menuName = "Dewdrops/AssetCollections/ArtifactAssetCollection")]
     public class ArtifactAssetCollection : ExtendedAssetCollection
     {
         [Tooltip("The Artifact Code for this Artifact, can be null.")]

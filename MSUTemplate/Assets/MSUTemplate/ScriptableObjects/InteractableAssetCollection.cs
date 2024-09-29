@@ -2,9 +2,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 using MSU;
-namespace MSUTemplate
+namespace Dewdrops
 {
-    [CreateAssetMenu(fileName = "InteractableAssetCollection", menuName = "MSUTemplateAssetCollections/InteractableAssetCollection")]
+    [CreateAssetMenu(fileName = "InteractableAssetCollection", menuName = "DewdropsAssetCollections/InteractableAssetCollection")]
     public class InteractableAssetCollection : ExtendedAssetCollection
     {
         public GameObject interactablePrefab;

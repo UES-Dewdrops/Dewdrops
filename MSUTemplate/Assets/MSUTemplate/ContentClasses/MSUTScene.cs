@@ -5,9 +5,9 @@ using RoR2.ContentManagement;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
-namespace MSUTemplate
+namespace Dewdrops
 {
-    public abstract class MSUTScene : ISceneContentPiece, IContentPackModifier
+    public abstract class DewdropsScene : ISceneContentPiece, IContentPackModifier
     {
         public SceneAssetCollection assetCollection { get; private set; }
         public NullableRef<MusicTrackDef> mainTrack { get; protected set; }
@@ -18,12 +18,12 @@ namespace MSUTemplate
         public bool? preLoop { get; protected set; }
         public bool? postLoop { get; protected set; }
 
-        public abstract MSUTAssetRequest<SceneAssetCollection> LoadAssetRequest();
+        public abstract DewdropsAssetRequest<SceneAssetCollection> LoadAssetRequest();
         public abstract void Initialize();
         public abstract bool IsAvailable(ContentPack contentPack);
         public virtual IEnumerator LoadContentAsync()
         {
-            MSUTAssetRequest<SceneAssetCollection> request = LoadAssetRequest();
+            DewdropsAssetRequest<SceneAssetCollection> request = LoadAssetRequest();
 
             request.StartLoad();
             while (!request.isComplete)

@@ -8,12 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using RoR2.ContentManagement;
-namespace MSUTemplate
+namespace Dewdrops
 {
     /// <summary>
     /// <inheritdoc cref="ISurvivorContentPiece"/>
     /// </summary>
-    public abstract class MSUTSurvivor : ISurvivorContentPiece, IContentPackModifier
+    public abstract class DewdropsSurvivor : ISurvivorContentPiece, IContentPackModifier
     {
         public  SurvivorAssetCollection assetCollection { get; private set; }
         public SurvivorDef survivorDef { get; protected  set; }
@@ -24,13 +24,13 @@ namespace MSUTemplate
         GameObject IContentPiece<GameObject>.asset => characterPrefab;
 
 
-        public abstract MSUTAssetRequest<SurvivorAssetCollection> LoadAssetRequest();
+        public abstract DewdropsAssetRequest<SurvivorAssetCollection> LoadAssetRequest();
         public abstract void Initialize();
         public abstract bool IsAvailable(ContentPack contentPack);
 
         public virtual IEnumerator LoadContentAsync()
         {
-            MSUTAssetRequest<SurvivorAssetCollection> request = LoadAssetRequest();
+            DewdropsAssetRequest<SurvivorAssetCollection> request = LoadAssetRequest();
 
             request.StartLoad();
             while (!request.isComplete)

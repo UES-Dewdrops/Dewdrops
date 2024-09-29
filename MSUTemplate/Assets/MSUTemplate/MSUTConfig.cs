@@ -8,16 +8,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MSUTemplate
+namespace Dewdrops
 {
     /*
      * This is the Config class for our mod, its setup in such a way that it allows us to utilize the Configuration systems from MSU.
      */
-    public class MSUTConfig
+    public class DewdropsConfig
     {
         //This is a prefix for your mod's configuration files, ideally you'll want to split each "content" type's configuration to allow
         //for ease of management in the future.
-        public const string PREFIX = "MSUTemplate.";
+        public const string PREFIX = "Dewdrops.";
         public const string ID_MAIN = PREFIX + "Main";
         public const string ID_ITEM = PREFIX + "Items";
         public const string ID_EQUIPMENT = PREFIX + "Equipments";
@@ -37,7 +37,7 @@ namespace MSUTemplate
         }
 
         //Constructor for the class, it creates the config factory. You should also create any ConfigFiles here.
-        internal MSUTConfig(BaseUnityPlugin bup)
+        internal DewdropsConfig(BaseUnityPlugin bup)
         {
             configFactory = new ConfigFactory(bup, true);
             configMain = configFactory.CreateConfigFile(ID_MAIN, true);

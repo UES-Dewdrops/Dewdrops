@@ -9,20 +9,20 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace MSUTemplate
+namespace Dewdrops
 {
     //This is our mod's ContentPack provider, here's where the Assetbundle loading occurs, which allows our assets and mod
     //initialization to occurr inside the loading screen
-    public class MSUTContent : IContentPackProvider
+    public class DewdropsContent : IContentPackProvider
     {
         //We can just use or mod's GUID as the identifier
-        public string identifier => MSUTMain.GUID;
+        public string identifier => DewdropsMain.GUID;
 
         //public facing property to let other mods access our content pack in a read only fashion
-        public static ReadOnlyContentPack readOnlyContentPack => new ReadOnlyContentPack(msuTemplateContentPack);
+        public static ReadOnlyContentPack readOnlyContentPack => new ReadOnlyContentPack(DewdropsContentPack);
 
         //Our mod's actual content pack
-        internal static ContentPack msuTemplateContentPack { get; } = new ContentPack();
+        internal static ContentPack DewdropsContentPack { get; } = new ContentPack();
 
         //These 3 fields are utilized by the mod to load our assets and initialize the mod.
 
@@ -30,7 +30,7 @@ namespace MSUTemplate
         internal static ParallelMultiStartCoroutine _parallelPreLoadDispatchers = new ParallelMultiStartCoroutine();
 
         //This is an array of coroutine calls, your mod's content initialization (IE: utilizing MSU's modules for initializing your
-        //content) happens here, its not parallel to avoid potential race conditions. This field is created inside the static constructor of MSUTContent
+        //content) happens here, its not parallel to avoid potential race conditions. This field is created inside the static constructor of DewdropsContent
         private static Func<IEnumerator>[] _loadDispatchers;
 
         //This ParallelMultiStartCoroutine can be used to load assets AFTER our mod finishes content intialization.
@@ -52,7 +52,7 @@ namespace MSUTemplate
                 yield break;
 
             _initialized = true;
-            var enumerator = MSUTAssets.Initialize(); //We initialize our assetbundles and await them.
+            var enumerator = DewdropsAssets.Initialize(); //We initialize our assetbundles and await them.
             while (enumerator.MoveNext())
                 yield return null;
 
@@ -84,7 +84,7 @@ namespace MSUTemplate
         //calling these methods.
         IEnumerator IContentPackProvider.GenerateContentPackAsync(GetContentPackAsyncArgs args)
         {
-            ContentPack.Copy(msuTemplateContentPack, args.output);
+            ContentPack.Copy(DewdropsContentPack, args.output);
             args.ReportProgress(1f);
             yield return null;
         }
@@ -114,22 +114,22 @@ namespace MSUTemplate
         //can be found in its documentation.
         private IEnumerator CallAsyncAssetLoadAttributes()
         {
-            var routine = AsyncAssetLoadAttribute.CreateCoroutineForMod(MSUTMain.instance);
+            var routine = AsyncAssetLoadAttribute.CreateCoroutineForMod(DewdropsMain.instance);
             routine.Start();
             while (!routine.isDone)
                 yield return null;
         }
 
         //Constructor for our content pack
-        internal MSUTContent()
+        internal DewdropsContent()
         {
             ContentManager.collectContentPackProviders += AddSelf; //Make sure we add our pack provider to the game's system
             _parallelPreLoadDispatchers.Add(CallAsyncAssetLoadAttributes);
         }
 
-        static MSUTContent()
+        static DewdropsContent()
         {
-            MSUTMain main = MSUTMain.instance; //get a direct reference to our plugin for ease of access
+            DewdropsMain main = DewdropsMain.instance; //get a direct reference to our plugin for ease of access
             _loadDispatchers = new Func<IEnumerator>[] //Create our array that will initialize our mod.
             {
                 () => 
@@ -137,7 +137,7 @@ namespace MSUTemplate
                     //This is the basic syntax of utilizing a module from MSU for initializing our content, we call 
                     //AddProvider to let the module know we're adding new content. And also create a simple content
                     //provider utilizing the ContentUtil class.
-                    ItemModule.AddProvider(main, ContentUtil.CreateGenericContentPieceProvider<ItemDef>(main, msuTemplateContentPack));
+                    ItemModule.AddProvider(main, ContentUtil.CreateGenericContentPieceProvider<ItemDef>(main, DewdropsContentPack));
 
                     //Then we directly return the coroutine that initializes our items
                     return ItemModule.InitializeItems(main);
@@ -147,7 +147,7 @@ namespace MSUTemplate
 
             _fieldAssignDispatchers = new Action[]
             {
-                () => ContentUtil.PopulateTypeFields(typeof(Items), msuTemplateContentPack.itemDefs),
+                () => ContentUtil.PopulateTypeFields(typeof(Items), DewdropsContentPack.itemDefs),
             };
         }
 

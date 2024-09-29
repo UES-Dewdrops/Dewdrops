@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace MSUTemplate
+namespace Dewdrops
 {
-    [CreateAssetMenu(fileName = "ItemTierAssetCollection", menuName = "MSUTemplateAssetCollections/ItemTierAssetCollection")]
+    [CreateAssetMenu(fileName = "ItemTierAssetCollection", menuName = "DewdropsAssetCollections/ItemTierAssetCollection")]
     public class ItemTierAssetCollection : ExtendedAssetCollection
     {
         public SerializableColorCatalogEntry colorIndex;

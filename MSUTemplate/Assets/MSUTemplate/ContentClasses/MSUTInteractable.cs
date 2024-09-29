@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 using UnityEngine;
 using RoR2.ContentManagement;
 
-namespace MSUTemplate
+namespace Dewdrops
 {
     /// <summary>
     /// <inheritdoc cref="IInteractableContentPiece"/>
     /// </summary>
-    public abstract class MSUTInteractable : IInteractableContentPiece, IContentPackModifier
+    public abstract class DewdropsInteractable : IInteractableContentPiece, IContentPackModifier
     {
         public InteractableAssetCollection assetCollection { get; private set; }
         public InteractableCardProvider cardProvider { get; protected set; }
@@ -24,12 +24,12 @@ namespace MSUTemplate
         GameObject IContentPiece<GameObject>.asset => interactablePrefab;
         NullableRef<InteractableCardProvider> IInteractableContentPiece.cardProvider => cardProvider;
 
-        public abstract MSUTAssetRequest<InteractableAssetCollection> LoadAssetRequest();
+        public abstract DewdropsAssetRequest<InteractableAssetCollection> LoadAssetRequest();
         public abstract void Initialize();
         public abstract bool IsAvailable(ContentPack contentPack);
         public virtual IEnumerator LoadContentAsync()
         {
-            MSUTAssetRequest<InteractableAssetCollection> request = LoadAssetRequest();
+            DewdropsAssetRequest<InteractableAssetCollection> request = LoadAssetRequest();
 
             request.StartLoad();
             while (!request.isComplete)

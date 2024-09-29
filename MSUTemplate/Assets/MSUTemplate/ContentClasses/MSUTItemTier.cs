@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 using UnityEngine;
 using RoR2.ContentManagement;
 
-namespace MSUTemplate
+namespace Dewdrops
 {
     /// <summary>
     /// <inheritdoc cref="IItemTierContentPiece"/>
     /// </summary>
-    public abstract class MSUTItemTier : IItemTierContentPiece, IContentPackModifier
+    public abstract class DewdropsItemTier : IItemTierContentPiece, IContentPackModifier
     {
         public ItemTierAssetCollection assetCollection { get; private set; }
         public NullableRef<SerializableColorCatalogEntry> colorIndex { get; protected set; }
@@ -27,12 +27,12 @@ namespace MSUTemplate
 
         ItemTierDef IContentPiece<ItemTierDef>.asset => itemTierDef;
 
-        public abstract MSUTAssetRequest<ItemTierAssetCollection> LoadAssetRequest();
+        public abstract DewdropsAssetRequest<ItemTierAssetCollection> LoadAssetRequest();
         public abstract void Initialize();
         public abstract bool IsAvailable(ContentPack contentPack);
         public virtual IEnumerator LoadContentAsync()
         {
-            MSUTAssetRequest<ItemTierAssetCollection> request = LoadAssetRequest();
+            DewdropsAssetRequest<ItemTierAssetCollection> request = LoadAssetRequest();
 
             request.StartLoad();
             while (!request.isComplete)

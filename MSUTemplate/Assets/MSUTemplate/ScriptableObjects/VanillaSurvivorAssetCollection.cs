@@ -3,9 +3,9 @@ using RoR2;
 using System.Collections;
 using UnityEngine;
 
-namespace MSUTemplate
+namespace Dewdrops
 {
-    [CreateAssetMenu(fileName = "VanillaSurvivorAssetCollection", menuName = "MSUTemplate/AssetCollections/VanillaSurvivorAssetCollection")]
+    [CreateAssetMenu(fileName = "VanillaSurvivorAssetCollection", menuName = "Dewdrops/AssetCollections/VanillaSurvivorAssetCollection")]
     public class VanillaSurvivorAssetCollection : ExtendedAssetCollection
     {
         public string survivorDefAddress;

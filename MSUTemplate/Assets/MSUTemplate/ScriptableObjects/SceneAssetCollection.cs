@@ -1,9 +1,9 @@
 ﻿using MSU;
 using RoR2;
 using UnityEngine;
-namespace MSUTemplate
+namespace Dewdrops
 {
-    [CreateAssetMenu(fileName = "SceneAssetCollection", menuName = "MSUTemplateAssetCollections/SceneAssetCollection")]
+    [CreateAssetMenu(fileName = "SceneAssetCollection", menuName = "DewdropsAssetCollections/SceneAssetCollection")]
     public class SceneAssetCollection : ExtendedAssetCollection
     {
         public SceneDef sceneDef;

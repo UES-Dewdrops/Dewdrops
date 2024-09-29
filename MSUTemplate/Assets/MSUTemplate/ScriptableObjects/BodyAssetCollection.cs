@@ -1,8 +1,8 @@
 ﻿using RoR2;
 using UnityEngine;
-namespace MSUTemplate
+namespace Dewdrops
 {
-    [CreateAssetMenu(fileName = "BodyAssetCollection", menuName = "MSUTemplateAssetCollections/BodyAssetCollection")]
+    [CreateAssetMenu(fileName = "BodyAssetCollection", menuName = "DewdropsAssetCollections/BodyAssetCollection")]
     public class BodyAssetCollection : ExtendedAssetCollection
     {
         public GameObject bodyPrefab;
