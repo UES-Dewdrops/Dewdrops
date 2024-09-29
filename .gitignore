@@ -59,43 +59,43 @@ sysinfo.txt
 crashlytics-build.properties
 
 #RoR2
-Dewdrops/[Pp]ackages/[Rr]isk of Rain 2/*.dll
-Dewdrops/[Pp]ackages/[Rr]isk of Rain 2/[Pp]lugins/*.dll
+DewdropsProject/[Pp]ackages/[Rr]isk of Rain 2/*.dll
+DewdropsProject/[Pp]ackages/[Rr]isk of Rain 2/[Pp]lugins/*.dll
 
 #Thunderkit Related
-Dewdrops/Assets/ThunderKitSettings/EditorInspectorSettings.asset
-Dewdrops/Assets/ThunderKitSettings/RoR2.asset
-Dewdrops/Assets/ThunderKitSettings/Logs/*
-Dewdrops/Assets/ThunderKitSettings/ThunderKit Extensions.asset
-Dewdrops/ThunderKit/
+DewdropsProject/Assets/ThunderKitSettings/EditorInspectorSettings.asset
+DewdropsProject/Assets/ThunderKitSettings/RoR2.asset
+DewdropsProject/Assets/ThunderKitSettings/Logs/*
+DewdropsProject/Assets/ThunderKitSettings/ThunderKit Extensions.asset
+DewdropsProject/ThunderKit/
 
 #Other
-Dewdrops/Assets/Plugins/NGTools/*
-Dewdrops/Assets/Resources/*
-Dewdrops/Packages/*
-!Dewdrops/Packages/packages-lock.json
-!Dewdrops/Packages/manifest.json
+DewdropsProject/Assets/Plugins/NGTools/*
+DewdropsProject/Assets/Resources/*
+DewdropsProject/Packages/*
+!DewdropsProject/Packages/packages-lock.json
+!DewdropsProject/Packages/manifest.json
 
 ##-------##
 ## wwise ##
 ##-------##
 
-Dewdrops/Dewdrops_WwiseProject/.cache/
-Dewdrops/Dewdrops_WwiseProject/*.prof
-Dewdrops/Dewdrops_WwiseProject/*_WwiseProject.*.validationcache
-Dewdrops/Dewdrops_WwiseProject/*_WwiseProject.*.wsettings
-Dewdrops/Dewdrops_WwiseProject/**/*.akd
+DewdropsProject/Dewdrops_WwiseProject/.cache/
+DewdropsProject/Dewdrops_WwiseProject/*.prof
+DewdropsProject/Dewdrops_WwiseProject/*_WwiseProject.*.validationcache
+DewdropsProject/Dewdrops_WwiseProject/*_WwiseProject.*.wsettings
+DewdropsProject/Dewdrops_WwiseProject/**/*.akd
 
-Dewdrops/Assets/Wwise/Editor/ProjectData/AkWwiseProjectData.asset*
+DewdropsProject/Assets/Wwise/Editor/ProjectData/AkWwiseProjectData.asset*
 
 # notes:
 # 1) if any other files go in Assets/Wwise/Editor/ProjectData/ besides AkWwiseProjectData.asset*,
 #    then don't ignore Assets/Wwise/Editor/ProjectData.meta. If AkWwiseProjectData.asset is the only item in there,
 #    then, it's OK to ignore this file.
 # 
-Dewdrops/Assets/Wwise/Editor/ProjectData.meta
-Dewdrops/Assets/Wwise/Deployment/Plugins/Mac/*
+DewdropsProject/Assets/Wwise/Editor/ProjectData.meta
+DewdropsProject/Assets/Wwise/Deployment/Plugins/Mac/*
 
 #Integration zips
-Dewdrops/WwiseUnityIntegration_Windows_Src.zip
-Dewdrops/WwiseUnityIntegration_Mac_Src.zip
+DewdropsProject/WwiseUnityIntegration_Windows_Src.zip
+DewdropsProject/WwiseUnityIntegration_Mac_Src.zip
